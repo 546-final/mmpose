@@ -8,6 +8,7 @@ from functools import partial
 
 import cv2
 import json_tricks as json
+import pickle
 import mmcv
 import mmengine
 import numpy as np
@@ -540,6 +541,13 @@ def main():
                 f,
                 indent='\t')
         print(f'predictions have been saved at {args.pred_save_path}')
+        # Also save the predictions in pickle format for easy loading
+        pickle_metadata_path = args.pred_save_path.replace('.json', '_matadata.pkl')
+        pickle_pred_list_path = args.pred_save_path.replace('.json', '_pred_list.pkl')
+        with open(pickle_metadata_path, 'wb') as f:
+            pickle.dump(pose_lifter.dataset_meta, f)
+        with open(pickle_pred_list_path, 'wb') as f:
+            pickle.dump(pred_instances_list, f)
 
     if save_output:
         input_type = input_type.replace('webcam', 'video')

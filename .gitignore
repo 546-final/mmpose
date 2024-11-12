@@ -111,7 +111,7 @@ mmpose/.mim
 /data
 #.vscode
 .idea
-*.pkl
+# *.pkl
 *.pkl.json
 *.log.json
 *.npy

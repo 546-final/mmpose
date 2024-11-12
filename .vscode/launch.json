@@ -29,7 +29,6 @@
                 "https://download.openmmlab.com/mmpose/body3d/videopose/videopose_h36m_243frames_fullconv_supervised_cpn_ft-88f5abbb_20210527.pth",
                 "--input", "${workspaceFolder}/demo/resources/demo.mp4",
                 "--output-root", "vis_results",
-                "--show",
                 "--save-predictions"
             ],
             "console": "integratedTerminal",
