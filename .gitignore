@@ -120,6 +120,12 @@ docs/**/topics/
 docs/**/papers/*.md
 docs/**/datasets.md
 docs/**/modelzoo.md
+demo/resources/
+demo/resources/preprocessed/
+demo/resources/golfdb/
+vis_results/preprocessed/
+vis_results/golfdb/
+vis_results/
 
 !tests/data/**/*.pkl
 !tests/data/**/*.pkl.json
