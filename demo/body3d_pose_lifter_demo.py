@@ -291,6 +291,12 @@ def process_one_image(args, detector, frame, frame_idx, pose_estimator,
     pose_est_results_list.append(pose_est_results_converted.copy())
 
     # Second stage: Pose lifting
+    # Save 2D keypoint scores before pose lifting
+    keypoint_scores_2d = [
+        result.pred_instances.keypoint_scores 
+        for result in pose_est_results_converted
+    ]
+
     # extract and pad input pose2d sequence
     pose_seq_2d = extract_pose_sequence(
         pose_est_results_list,
@@ -314,6 +320,8 @@ def process_one_image(args, detector, frame, frame_idx, pose_estimator,
         pred_instances = pose_lift_result.pred_instances
         keypoints = pred_instances.keypoints
         keypoint_scores = pred_instances.keypoint_scores
+        keypoint_scores = keypoint_scores * keypoint_scores_2d[idx]
+
         if keypoint_scores.ndim == 3:
             keypoint_scores = np.squeeze(keypoint_scores, axis=1)
             pose_lift_results[
@@ -331,6 +339,7 @@ def process_one_image(args, detector, frame, frame_idx, pose_estimator,
                 keypoints[..., 2], axis=-1, keepdims=True)
 
         pose_lift_results[idx].pred_instances.keypoints = keypoints
+        pose_lift_results[idx].pred_instances.keypoint_scores = keypoint_scores
 
     pose_lift_results = sorted(
         pose_lift_results, key=lambda x: x.get('track_id', 1e4))

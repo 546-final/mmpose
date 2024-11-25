@@ -2,6 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
+            },
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
             "name": "Python: Image Demo",
             "type": "debugpy",
             "request": "launch",

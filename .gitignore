@@ -127,6 +127,8 @@ vis_results/preprocessed/
 vis_results/golfdb/
 vis_results/
 
+!vis_results/resuls_demo.json
+
 !tests/data/**/*.pkl
 !tests/data/**/*.pkl.json
 !tests/data/**/*.log.json

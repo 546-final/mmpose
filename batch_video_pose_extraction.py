@@ -1,7 +1,7 @@
 import os
 
 
-video_folder = os.path.join(os.getcwd(), 'demo', 'resources', 'preprocessed')
+video_folder = os.path.join(os.getcwd(), 'demo', 'resources')
 video_files = [f for f in os.listdir(video_folder) if f.endswith(('.mp4', '.MOV', '.mov'))]
 
 for video_file in video_files:
@@ -21,7 +21,7 @@ for video_file in video_files:
               f'videopose_h36m_243frames_fullconv_supervised_cpn_ft-' \
               f'88f5abbb_20210527.pth ' \
               f'--input {video_path} ' \
-              f'--output-root vis_results/preprocessed ' \
+              f'--output-root vis_results ' \
               f'--save-predictions'
     
     print(f'Start processing video {video_file}...')
